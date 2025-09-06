@@ -34,7 +34,11 @@
     "top_bar_sl_Ccc7bP": {
       "type": "top-bar-sl",
       "name": "Top Bar SL",
-      "settings": {}
+      "settings": {
+        "brand-name": "TISSON VISION",
+        "padding_top": 12,
+        "padding_bottom": 12
+      }
     }
   },
   "order": [
