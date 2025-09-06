@@ -36,6 +36,8 @@
       "name": "Top Bar SL",
       "settings": {
         "brand-name": "TISSON VISON",
+        "bar-text": "Find The Ideal Gift For Your Loved Ones",
+        "color_scheme": "scheme-2",
         "padding_top": 12,
         "padding_bottom": 12
       }
