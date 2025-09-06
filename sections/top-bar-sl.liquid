@@ -1,17 +1,27 @@
-<section>
-    <p>testing top bar</p>
+<section class="top-bar-sl-{{ section.id }}">
+  <div class="page-width">
+    <div class="top-bar-flex">
+      <h2 class="brand-name">
+        {{ section.settings.brand-name }}
+      </h2>
+    </div>
+  </div>
 </section>
-
+{% style %}
+{% endstyle %} 
 {% schema %}
-{
-  "name": "Top Bar SL",
-  "settings": [
-  ],
-  "presets": [
-    {
-      "name": "Top Bar SL",
-      "category": "Custom"
+{ "name": "Top Bar SL",
+    "settings": [
+        {
+        "type": "text",
+        "id": "brand-name",
+        "label": "Brand Name",
+        "default": "TISSON VISION"
+        }
+     ],
+"presets": [
+     { "name": "Top Bar SL",
+         "category": "Custom" } 
+        ] 
     }
-  ]
-}
 {% endschema %}
