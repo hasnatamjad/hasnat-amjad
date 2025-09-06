@@ -4,9 +4,29 @@
       <h2 class="brand-name">
         {{ section.settings.brand-name }}
       </h2>
+      <p class="bar-main-text">
+        {{ section.settings.bar-text }}
+      </p>
     </div>
   </div>
 </section>
+
+<style>
+.top-bar-flex {
+ display: flex;
+ align-items: center;
+ justify-content: space-between;
+}
+.bar-main-text {
+margin: 0;
+}
+.brand-name {
+    font-weight: 700;
+    font-size: 36px;
+    margin: 0;
+}
+</style>
+
 {% style %}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -20,16 +40,7 @@
     }
   }
 {% endstyle %}
-{% style %}
-.top-bar-flex {
 
-}
-.brand-name {
-    font-weight: 700;
-    font-size: 36px;
-    margin: 0;
-}
-{% endstyle %} 
 {% schema %}
 { "name": "Top Bar SL",
     "settings": [
@@ -38,6 +49,12 @@
         "id": "brand-name",
         "label": "Brand Name",
         "default": "TISSON VISION"
+        },
+        {
+        "type": "text",
+        "id": "bar-text",
+        "label": "Main Text",
+        "default": "Find The Ideal Gift For Your Loved Ones"
         },
         {
       "type": "range",
