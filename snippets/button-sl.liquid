@@ -1,0 +1,83 @@
+{% comment %}
+ SETTINGS FOR THE RESUABLE BUTTON
+   {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFF544"
+    },
+    {
+      "type": "color",
+      "id": "bg_hover_color",
+      "label": "Background Hover Color",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "text_hover_color",
+      "label": "Text Hover Color",
+      "default": "#fff"
+    },
+{% endcomment %}
+
+<a class="btn btn-sl" href="#">{{ sst.button_text }} {% render 'icon-arrow-right' %}</a>
+
+{% style %}      
+    /* From Uiverse.io by ernestnash */ 
+.btn-sl {
+ display: inline-flex;
+ gap: 16px;
+ padding: 1.6rem 2.8rem;
+ font-size: 22px;
+ line-height: 1;
+ align-items: center;
+ font-weight: 500;
+ color: {{sst.text_color}};
+ text-transform: uppercase;
+ cursor: pointer;
+ position: relative;
+ background-color: {{sst.bg_color}};
+ text-decoration: none;
+ overflow: hidden;
+ z-index: 1;
+ font-family: inherit;
+}
+.btn-sl:hover {
+ color: {{sst.text_hover_color}};
+
+}
+
+.btn::before {
+ content: "";
+ position: absolute;
+ left: 0;
+ top: 0;
+ width: 0;
+ height: 100%;
+ background-color: {{sst.bg_hover_color}};
+ transform: translateX(-100%);
+ transition: all 0.7s;
+ z-index: -1;
+}
+
+.btn:hover::before {
+width: 100%;
+ transform: translateX(0);
+}
+.btn-right-arrow {
+    width: 32px;
+    height: 16px;
+}
+{% endstyle %}
