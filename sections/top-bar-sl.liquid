@@ -1,4 +1,4 @@
-<section class="top-bar-sl-{{ section.id }} section-{{ section.id }}-padding">
+<section class="top-bar-sl-{{ section.id }} color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
   <div class="page-width">
     <div class="top-bar-flex">
       <h2 class="brand-name">
@@ -56,6 +56,12 @@ margin: 0;
         "label": "Main Text",
         "default": "Find The Ideal Gift For Your Loved Ones"
         },
+        {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+    },
         {
       "type": "range",
       "id": "padding_top",
