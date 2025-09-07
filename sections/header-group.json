@@ -32,7 +32,7 @@
       }
     },
     "top_bar_sl_Ccc7bP": {
-      "type": "top-bar-sl",
+      "type": "top-header-sl",
       "name": "Top Bar SL",
       "settings": {
         "brand-name": "TISSON VISON",
@@ -48,8 +48,5 @@
       }
     }
   },
-  "order": [
-    "header",
-    "top_bar_sl_Ccc7bP"
-  ]
+  "order": ["header", "top_bar_sl_Ccc7bP"]
 }
