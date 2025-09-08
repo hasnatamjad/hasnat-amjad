@@ -1,9 +1,21 @@
 <section class="hero-sl-{{ section.id }} color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
-    <div class="hero-img-container">
+    <div class="hero-img-container hero-height-{{ section.settings.hero-sl-height }}">
 
     </div>
 </section>
 {% style %}
+  .hero-height-small {
+    min-height: 300px;
+  }
+  .hero-height-medium {
+    min-height: 500px;
+  }
+.hero-height-large {
+    min-height: 700px;
+  }
+.hero-height-full {
+    min-height: 100vh;
+  }
   .hero-img-container {
     background-image: url({{ section.settings.hero-bg-desktop-sl | image_url: width: 2000 }});
     position: relative;
@@ -11,10 +23,32 @@
     background-position: center;
     background-repeat: no-repeat;
   }
+
 {% endstyle %}
 {% schema %}
 { "name": "Hero SL",
     "settings": [
+        {
+         "type": "select",
+         "id": "hero-sl-height",
+         "label": "Section Height",
+         "default": "large",
+         "options": [
+          {
+          "value": "small", "label": "Small"
+          },
+          {
+          "value": "medium", "label":  "Medium"
+          },
+          {
+          "value": "large", "label":  "Large"
+          },
+          {
+          "value": "Full", "label":  "Full"
+          },
+         ]
+         
+        },
         {
             "type": "image_picker", 
             "id": "hero-bg-desktop-sl",
