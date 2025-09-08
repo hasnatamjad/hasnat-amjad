@@ -5,7 +5,7 @@
   min-height: 540px;
 }
 .hero-height-large {
-  min-height: 770px;
+  min-height: 760px;
 }
 .hero-height-full {
   min-height: 100vh;
@@ -23,7 +23,7 @@
   max-width: 590px;
 }
 .hero-content-inner {
-  gap: 24px;
+  gap: 30px;
 }
 
 .hero-heading,
