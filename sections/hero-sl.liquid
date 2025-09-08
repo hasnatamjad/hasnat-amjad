@@ -1,8 +1,15 @@
 {{ 'hero-sl.css' | asset_url | stylesheet_tag }}
 
 <section class="hero-sl-{{ section.id }} color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
-    <div class="hero-img-container hero-height-{{ section.settings.hero-sl-height }}">
+    <div class="hero-img-container hero-height-{{ section.settings.hero-sl-height }} d-flex align-items-end justify-content-start">
+     <div class="hero-content-sl py-5  ">
+      <div class="page-width hero-content-inner d-flex flex-column ">
+<h1 class="hero-heading">{{ section.settings.hero-heading }}</h1>
+<div class="hero-text">{{ section.settings.hero-text}}</div>
+ {% render 'button-sl' sst: section.settings %}
+</div>
 
+     </div>
     </div>
 </section>
 
@@ -15,6 +22,10 @@
 {% schema %}
 { "name": "Hero SL",
     "settings": [
+        {
+          "type": "header",
+          "content": "Image Settings"
+        },
         {
          "type": "select",
          "id": "hero-sl-height",
@@ -42,6 +53,52 @@
             "label": "Hero Background Desktop",
 
         },
+        {
+          "type": "header",
+          "content": "Content Settings"
+        },
+        {
+        "type": "text",
+        "id": "hero-heading",
+        "label": "Heading",
+        "default": "The Gift Guide"
+        },
+        {
+        "type": "richtext",
+        "id": "hero-text",
+        "label": "Text",
+        "default": "<p>Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.</p>"
+        },
+        {
+      "type": "text",
+      "id": "button_text",
+      "label": "Button Text",
+      "default": "Shop Now"
+    },
+    {
+      "type": "color",
+      "id": "bg_color",
+      "label": "Background Color",
+      "default": "#FFF544"
+    },
+    {
+      "type": "color",
+      "id": "bg_hover_color",
+      "label": "Background Hover Color",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "text_color",
+      "label": "Text Color",
+      "default": "#000"
+    },
+    {
+      "type": "color",
+      "id": "text_hover_color",
+      "label": "Text Hover Color",
+      "default": "#fff"
+    },
         {
       "type": "color_scheme",
       "id": "color_scheme",

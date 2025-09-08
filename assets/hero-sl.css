@@ -17,3 +17,19 @@
   background-position: center;
   background-repeat: no-repeat;
 }
+
+.hero-content-sl {
+  background: #fff;
+  max-width: 500px;
+}
+.hero-content-inner {
+  gap: 16px;
+}
+
+.hero-heading {
+  margin: 0;
+  line-height: 1;
+}
+.hero-text p {
+  margin-bottom: 0;
+}
