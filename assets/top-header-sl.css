@@ -1,0 +1,17 @@
+.top-bar-flex {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.bar-main-text {
+  margin: 0;
+}
+.brand-name {
+  font-size: 34px;
+  margin: 0;
+}
+
+.bar-main-text {
+  color: #000;
+  font-size: 16px;
+}

@@ -1,39 +1,21 @@
-
+{{ 'top-header-sl.css' | asset_url | stylesheet_tag }}
 
 <section class="top-bar-sl-{{ section.id }} color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
   <div class="page-width">
+    <button>menu</button>
     <div class="top-bar-flex">
       <h2 class="brand-name">
         {{ section.settings.brand-name }}
       </h2>
-      <p class="bar-main-text">
+      <p class="bar-main-text d-none d-md-block">
         {{ section.settings.bar-text }}
       </p>
+    <div class="d-none d-md-block">
       {% render 'button-sl' sst: section.settings, s_id: section.id %}
+      </div>
     </div>
   </div>
 </section>
-
-<style>
-.top-bar-flex {
- display: flex;
- align-items: center;
- justify-content: space-between;
-}
-.bar-main-text {
-margin: 0;
-}
-.brand-name {
- 
-    font-size: 34px;
-    margin: 0;
-}
-
-.bar-main-text {
-color: #000;
-font-size: 16px;
-}
-</style>
 
 {% style %}
   .section-{{ section.id }}-padding {
