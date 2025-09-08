@@ -3,7 +3,7 @@
 <section class="hero-sl-{{ section.id }} color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
     <div class="hero-img-container hero-height-{{ section.settings.hero-sl-height }} d-flex align-items-end justify-content-start">
      <div class="hero-content-sl py-5  ">
-      <div class="page-width hero-content-inner d-flex flex-column ">
+      <div class="page-width py-4 hero-content-inner d-flex flex-column ">
 <h1 class="hero-heading">{{ section.settings.hero-heading }}</h1>
 <div class="hero-text">{{ section.settings.hero-text}}</div>
  {% render 'button-sl' sst: section.settings %}
@@ -14,6 +14,10 @@
 </section>
 
 {% style %}
+.hero-sl-{{ section.id }} {
+  --hero-heading-size: {{ section.settings.hero_heading_size }}px;
+}
+
   .hero-img-container {
     background-image: url({{ section.settings.hero-bg-desktop-sl | image_url: width: 2000 }});
   }
@@ -63,6 +67,16 @@
         "label": "Heading",
         "default": "The Gift Guide"
         },
+        {
+  "type": "range",
+  "id": "hero_heading_size",
+  "label": "Heading size",
+  "min": 12,
+  "max": 80,
+  "step": 1,
+  "unit": "px",
+  "default": 32
+},
         {
         "type": "richtext",
         "id": "hero-text",

@@ -23,13 +23,13 @@
   max-width: 500px;
 }
 .hero-content-inner {
-  gap: 16px;
+  gap: 22px;
 }
 
-.hero-heading {
-  margin: 0;
-  line-height: 1;
-}
+.hero-heading,
 .hero-text p {
-  margin-bottom: 0;
+  margin: 0;
+}
+.hero-heading {
+  font-size: var(--hero-heading-size);
 }
