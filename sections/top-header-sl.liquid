@@ -1,22 +1,54 @@
 {{ 'top-header-sl.css' | asset_url | stylesheet_tag }}
 
-<section class="top-bar-sl-{{ section.id }} color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
-  <div class="page-width">
-    <button>menu</button>
-    <div class="top-bar-flex">
-      <h2 class="brand-name">
-        {{ section.settings.brand-name }}
-      </h2>
+
+<section
+  class="header-sl-{{ section.id }} color-{{ section.settings.color_scheme }}"
+>
+  {% comment %} Main Header Bar {% endcomment %}
+  <div class="page-width menu-bar d-flex align-items-center section-{{ section.id }}-padding">
+    {% comment %} menu button - for mobile {% endcomment %}
+    <button id="menu-toggle" class="d-block d-md-none">
+      <img
+        id="menu-icon"
+        src="{{ 'hamburger-sl.svg' | asset_url }}"
+        alt="Menu"
+        class=" "
+        height="auto"
+        width="auto"
+      />
+    </button>
+    {% comment %} desktop header {% endcomment %}
+    <div class="flex-grow-1 d-flex align-items-center justify-content-center justify-content-md-between">
+      <h2 class="brand-name">{{ section.settings.brand-name }}</h2>
       <p class="bar-main-text d-none d-md-block">
         {{ section.settings.bar-text }}
       </p>
-    <div class="d-none d-md-block">
-      {% render 'button-sl' sst: section.settings, s_id: section.id %}
+      <div class="d-none d-md-block">
+        {% render 'button-sl' sst: section.settings, s_id: section.id %}
       </div>
+    </div>
+  </div>
+  {% comment %} Mobile Menu Container {% endcomment %}
+  <div class="mobile-menu  d-block d-md-none">
+    <div class="page-width mobile-menu-inner">
+        <p class="bar-main-text">
+        mobile text testing here
+      </p>
+      {% render 'button-sl' sst: section.settings, s_id: section.id %}
+      
     </div>
   </div>
 </section>
 
+<script>
+  window.menuIcons = {
+    open: "{{ 'menu-close-sl.svg' | asset_url }}",
+    close: "{{ 'hamburger-sl.svg' | asset_url }}",
+  };
+</script>
+<script src="{{ 'header-sl.js' | asset_url }}" defer></script>
+
+ 
 {% style %}
   .section-{{ section.id }}-padding {
     padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
@@ -30,7 +62,9 @@
     }
   }
 {% endstyle %}
+ 
 
+ 
 {% schema %}
 { "name": "Top Header SL",
     "settings": [

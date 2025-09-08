@@ -3695,3 +3695,6 @@ details-disclosure > details {
 *::after {
   color: rgb(var(--color-foreground)) !important;
 }
+body p {
+  margin: 0;
+}

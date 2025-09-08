@@ -1,0 +1,23 @@
+<section
+  class="top-bar-sl-{{ section.id }} color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding"
+>
+  <div class="page-width">
+    <button id="menu-toggle">
+      <img
+        id="menu-icon"
+        src="{{ 'hamburger-sl.svg' | asset_url }}"
+        alt="Menu"
+      />
+    </button>
+
+    <div class="top-bar-flex">
+      <h2 class="brand-name">{{ section.settings.brand-name }}</h2>
+      <p class="bar-main-text d-none d-md-block">
+        {{ section.settings.bar-text }}
+      </p>
+      <div class="d-none d-md-block">
+        {% render 'button-sl' sst: section.settings, s_id: section.id %}
+      </div>
+    </div>
+  </div>
+</section>
