@@ -6,12 +6,15 @@
   <div
     class="hero-img-container hero-height-{{ section.settings.hero-sl-height }} d-flex align-items-end justify-content-start" >
     <div class="hero-content-sl py-5">
-      <div class="page-width py-4 hero-content-inner d-flex flex-column">
+      <div class="page-width pt-4 pb-5 hero-content-inner d-flex flex-column">
         <h1 class="hero-heading">{{ section.settings.hero-heading }}</h1>
         <div class="hero-text">{{ section.settings.hero-text}}</div>
         {% render 'button-sl' sst: section.settings, s_id: section.id %}
       </div>
     </div>
+  </div>
+  <div class="hero-bottom">
+    <p class="center">{{ section.settings.hero-bottom-content }}</p>
   </div>
 </section>
 
@@ -24,10 +27,21 @@
     background-image: url({{ section.settings.hero-bg-desktop-sl | image_url: width: 2000 }});
   }
 
+  .hero-bottom {
+    background: {{ section.settings.hero-bottom-bg }};
+    padding: 3px 0;
+  }
+
 {% endstyle %}
 {% schema %}
 { "name": "Hero SL",
     "settings": [
+       {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "t:sections.all.colors.label",
+      "default": "scheme-1"
+       },
         {
           "type": "header",
           "content": "Image Settings"
@@ -115,12 +129,18 @@
       "label": "Text Hover Color",
       "default": "#fff"
     },
-        {
-      "type": "color_scheme",
-      "id": "color_scheme",
-      "label": "t:sections.all.colors.label",
-      "default": "scheme-1"
-       },
+    {
+      "type": "color",
+      "id": "hero-bottom-bg",
+      "label": "Bottom Background",
+      "default": "#F5F5F5"
+    },
+    {
+     "type": "text",
+     "id": "hero-bottom-content",
+     "label": "Hero Botton Text",
+     "default": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
+    }
        
      ],
 "presets": [

@@ -27,10 +27,14 @@
 }
 
 .hero-heading,
-.hero-text p {
+.hero-text p,
+.hero-bottom p {
   margin: 0;
 }
 .hero-heading {
   font-weight: 500;
   font-size: var(--hero-heading-size);
+}
+.hero-bottom p {
+  text-transform: uppercase;
 }
