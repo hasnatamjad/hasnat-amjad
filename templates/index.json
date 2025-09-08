@@ -13,6 +13,7 @@
       "type": "hero-sl",
       "name": "Hero",
       "settings": {
+        "hero-bg-desktop-sl": "shopify://shop_images/pexels-lum3n-44775-322207.jpg",
         "color_scheme": "",
         "padding_top": 40,
         "padding_bottom": 52
