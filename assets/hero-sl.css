@@ -20,10 +20,10 @@
 
 .hero-content-sl {
   background: #fff;
-  max-width: 530px;
+  max-width: 590px;
 }
 .hero-content-inner {
-  gap: 22px;
+  gap: 24px;
 }
 
 .hero-heading,
@@ -35,6 +35,10 @@
   font-weight: 500;
   font-size: var(--hero-heading-size);
 }
+.hero-text p {
+  font-size: 18px;
+}
 .hero-bottom p {
   text-transform: uppercase;
+  font-size: 18px;
 }
