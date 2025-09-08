@@ -1,11 +1,11 @@
 .hero-height-small {
-  min-height: 300px;
+  min-height: 350px;
 }
 .hero-height-medium {
-  min-height: 500px;
+  min-height: 540px;
 }
 .hero-height-large {
-  min-height: 750px;
+  min-height: 770px;
 }
 .hero-height-full {
   min-height: 100vh;
