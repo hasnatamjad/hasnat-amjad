@@ -1,16 +1,18 @@
 {{ 'hero-sl.css' | asset_url | stylesheet_tag }}
 
-<section class="hero-sl-{{ section.id }} color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
-    <div class="hero-img-container hero-height-{{ section.settings.hero-sl-height }} d-flex align-items-end justify-content-start">
-     <div class="hero-content-sl py-5  ">
-      <div class="page-width py-4 hero-content-inner d-flex flex-column ">
-<h1 class="hero-heading">{{ section.settings.hero-heading }}</h1>
-<div class="hero-text">{{ section.settings.hero-text}}</div>
- {% render 'button-sl' sst: section.settings, s_id: section.id %}
-</div>
-
-     </div>
+<section
+  class="hero-sl-{{ section.id }} color-{{ section.settings.color_scheme }}"
+>
+  <div
+    class="hero-img-container hero-height-{{ section.settings.hero-sl-height }} d-flex align-items-end justify-content-start" >
+    <div class="hero-content-sl py-5">
+      <div class="page-width py-4 hero-content-inner d-flex flex-column">
+        <h1 class="hero-heading">{{ section.settings.hero-heading }}</h1>
+        <div class="hero-text">{{ section.settings.hero-text}}</div>
+        {% render 'button-sl' sst: section.settings, s_id: section.id %}
+      </div>
     </div>
+  </div>
 </section>
 
 {% style %}
@@ -119,26 +121,7 @@
       "label": "t:sections.all.colors.label",
       "default": "scheme-1"
        },
-       {
-      "type": "range",
-      "id": "padding_top",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_top",
-      "default": 40
-        },
-      {
-      "type": "range",
-      "id": "padding_bottom",
-      "min": 0,
-      "max": 100,
-      "step": 4,
-      "unit": "px",
-      "label": "t:sections.all.padding.padding_bottom",
-      "default": 52
-      }
+       
      ],
 "presets": [
      { "name": "Hero",
