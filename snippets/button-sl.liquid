@@ -80,12 +80,14 @@
   transform: translateX(0);
 }
 
-.btn-sl-{{ s_id }} .btn-right-arrow-{{ s_id }} path {
+.btn-sl-{{ s_id }} svg.btn-right-arrow-{{ s_id }} path {
   fill: {{ sst.text_color }};
+  width: 32px !important;
+  height: 16px !important;
   transition: fill 0.3s ease;
 }
 
-.btn-sl-{{ s_id }}:hover .btn-right-arrow-{{ s_id }} path {
+.btn-sl-{{ s_id }}:hover svg.btn-right-arrow-{{ s_id }} path {
   fill: {{ sst.text_hover_color }} !important;
 }
 {% endstyle %}
