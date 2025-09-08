@@ -1,0 +1,19 @@
+.hero-height-small {
+  min-height: 300px;
+}
+.hero-height-medium {
+  min-height: 500px;
+}
+.hero-height-large {
+  min-height: 700px;
+}
+.hero-height-full {
+  min-height: 100vh;
+}
+
+.hero-img-container {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
