@@ -1,10 +1,22 @@
 <section class="hero-sl-{{ section.id }} color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding">
-    testing the hero with bootstrap grid onyl
-</section>
+    <div class="hero-img-container">
 
+    </div>
+</section>
+{% style %}
+  .hero-img-container {
+    background-image: url({{ section.settings.hero-hero-bg-desktop-sl | image_url: width: 2000 }})
+  }
+{% endstyle %}
 {% schema %}
 { "name": "Hero SL",
     "settings": [
+        {
+            "type": "image_picker", 
+            "id": "hero-bg-desktop-sl",
+            "label": "Hero Background Desktop",
+
+        },
         {
       "type": "color_scheme",
       "id": "color_scheme",
