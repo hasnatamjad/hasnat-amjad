@@ -39,6 +39,15 @@
     padding: 3px 0;
   }
 
+@media (max-width: 768px) {
+  .hero-img-container {
+    {% if section.settings.hero-bg-mobile-sl != blank %}
+      background-image: url({{ section.settings.hero-bg-mobile-sl | image_url: width: 1000 }});
+    {% else %}
+      background-image: url({{ section.settings.hero-bg-desktop-sl | image_url: width: 1000 }});
+    {% endif %}
+  }
+}
 {% endstyle %}
 {% schema %}
 { "name": "Hero SL",
@@ -86,7 +95,13 @@
         {
             "type": "image_picker", 
             "id": "hero-bg-desktop-sl",
-            "label": "Hero Background Desktop",
+            "label": "Background Desktop",
+
+        },
+        {
+            "type": "image_picker", 
+            "id": "hero-bg-mobile-sl",
+            "label": "Background Mobile",
 
         },
         {
