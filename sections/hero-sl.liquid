@@ -34,6 +34,7 @@
 .hero-sl-{{ section.id }} {
   --hero-heading-size: {{ section.settings.hero_heading_size }}px;
   --hero-height-mobile: {{ section.settings.hero-height-mobile }}px;
+  --content-width: {{ section.settings.content-width-desktop }}px;
 }
 
   .hero-img-container {
@@ -113,6 +114,15 @@
         {
           "type": "header",
           "content": "Content Settings"
+        },
+        {
+          "type": "range",
+          "id": "content-width-desktop",
+          "label": "Content Width",
+          "min": 500,
+          "max": 800,
+          "step": 10,
+          "default": 660
         },
         {
         "type": "text",

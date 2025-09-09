@@ -20,7 +20,7 @@
 
 .hero-content-sl {
   background: #fff;
-  max-width: 590px;
+  max-width: var(--content-width);
 }
 .hero-content-inner {
   gap: 30px;
@@ -36,7 +36,7 @@
   font-size: var(--hero-heading-size);
 }
 .hero-text p {
-  font-size: calc(var(--hero-heading-size) * 0.27);
+  font-size: calc(var(--hero-heading-size) * 0.28);
   line-height: 1.4;
 }
 .hero-bottom {
@@ -66,10 +66,11 @@
   }
   .hero-heading {
     font-weight: 500;
-    font-size: calc(var(--hero-heading-size) * 0.48);
+    font-size: 32px;
   }
   .hero-text p {
     line-height: 1.2;
+    font-size: 16px;
   }
   .hero-bottom p {
     font-size: 14px;
