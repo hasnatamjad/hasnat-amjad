@@ -49,7 +49,7 @@
     min-height: var(--hero-height-mobile);
   }
   .hero-img-container {
-    background-size: contain;
+    background-size: cover;
     background-position: center bottom;
   }
   .hero-content-sl {
