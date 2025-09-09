@@ -18,8 +18,9 @@
         "hero-height-mobile": 270,
         "hero-bg-desktop-sl": "shopify://shop_images/pexels-lum3n-44775-322207.jpg",
         "hero-bg-mobile-sl": "shopify://shop_images/Frame_3.png",
+        "content-width-desktop": 660,
         "hero-heading": "The Gift Guide",
-        "hero_heading_size": 68,
+        "hero_heading_size": 78,
         "hero-text": "<p>Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.</p>",
         "hero-text-mobile": "<p>Discover Joy: Your Ultimate Holiday Gift Destination.</p>",
         "button_text": "Shop Now",
@@ -28,7 +29,8 @@
         "text_color": "#ffffff",
         "text_hover_color": "#000000",
         "hero-bottom-bg": "#f5f5f5",
-        "hero-bottom-content": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL"
+        "bottom-content": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL",
+        "bottom-content-mobile": "SUSTAINABLE, ETHICALLY MADE ACTIVEWEAR"
       }
     }
   },
