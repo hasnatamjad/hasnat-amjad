@@ -36,9 +36,31 @@
   font-size: var(--hero-heading-size);
 }
 .hero-text p {
-  font-size: 18px;
+  font-size: calc(var(--hero-heading-size) * 0.27);
+  line-height: 1.4;
 }
 .hero-bottom p {
   text-transform: uppercase;
   font-size: 18px;
+}
+
+@media (max-width: 750px) {
+  .hero-height-mobile {
+    min-height: var(--hero-height-mobile);
+  }
+  .hero-img-container {
+    background-size: contain;
+    background-position: center bottom;
+  }
+  .hero-content-sl {
+    background: transparent;
+    max-width: 590px;
+  }
+  .hero-heading {
+    font-weight: 500;
+    font-size: calc(var(--hero-heading-size) * 0.6);
+  }
+  .hero-text p {
+    line-height: 1.2;
+  }
 }

@@ -10,8 +10,10 @@
   margin: 0;
 }
 .brand-name {
-  font-size: 34px;
+  font-size: 30px;
   margin: 0;
+  text-align: center;
+  font-weight: 600;
 }
 
 .bar-main-text {
@@ -20,6 +22,7 @@
 }
 
 #menu-toggle {
+  position: absolute;
   width: 35px;
   height: 35px;
   border: none;
