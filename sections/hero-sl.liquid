@@ -7,8 +7,10 @@
     class="hero-img-container hero-height-{{ section.settings.hero-sl-height }} d-flex align-items-end justify-content-start" >
     <div class="hero-content-sl py-5">
       <div class="page-width pt-4 pb-5 hero-content-inner d-flex flex-column">
+        <div>
         <h1 class="hero-heading">{{ section.settings.hero-heading }}</h1>
         <div class="hero-text">{{ section.settings.hero-text}}</div>
+        </div>
         {% render 'button-sl' sst: section.settings, s_id: section.id %}
       </div>
     </div>
