@@ -59,11 +59,19 @@
     background: transparent;
     max-width: 590px;
   }
+  .mobile-content {
+    margin-top: 48px;
+    margin-bottom: 12px;
+    gap: 24px;
+  }
   .hero-heading {
     font-weight: 500;
-    font-size: calc(var(--hero-heading-size) * 0.5);
+    font-size: calc(var(--hero-heading-size) * 0.48);
   }
   .hero-text p {
     line-height: 1.2;
+  }
+  .hero-bottom p {
+    font-size: 14px;
   }
 }
