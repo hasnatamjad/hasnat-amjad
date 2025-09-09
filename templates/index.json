@@ -15,10 +15,13 @@
       "settings": {
         "color_scheme": "",
         "hero-sl-height": "large",
+        "hero-height-mobile": 300,
         "hero-bg-desktop-sl": "shopify://shop_images/pexels-lum3n-44775-322207.jpg",
+        "hero-bg-mobile-sl": "shopify://shop_images/Frame_2.png",
         "hero-heading": "The Gift Guide",
         "hero_heading_size": 68,
         "hero-text": "<p>Discover Joy: Your Ultimate Holiday Gift Destination. Explore our curated selection and find the perfect gifts to delight your loved ones this holiday season.</p>",
+        "hero-text-mobile": "<p>Discover Joy: Your Ultimate Holiday Gift Destination.</p>",
         "button_text": "Shop Now",
         "bg_color": "#000000",
         "bg_hover_color": "#fff544",
