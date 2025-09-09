@@ -90,4 +90,12 @@
 .btn-sl-{{ s_id }}:hover svg.btn-right-arrow-{{ s_id }} path {
   fill: {{ sst.text_hover_color }} !important;
 }
+@media (max-width: 750px) {
+ .btn-sl-{{ s_id }} {
+  gap: 14px;
+  padding: 1.6rem 3rem;
+  font-size: 18px;  
+}
+}
+
 {% endstyle %}
