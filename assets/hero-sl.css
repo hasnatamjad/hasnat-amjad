@@ -27,7 +27,6 @@
 }
 
 .hero-heading,
-.hero-text p,
 .hero-bottom p {
   margin: 0;
 }
@@ -36,8 +35,8 @@
   font-size: var(--hero-heading-size);
 }
 .hero-text p {
-  font-size: calc(var(--hero-heading-size) * 0.28);
-  line-height: 1.4;
+  font-size: calc(var(--hero-heading-size) * 0.27);
+  line-height: 1.5;
   margin: 40px 0;
 }
 .hero-bottom {
@@ -58,7 +57,7 @@
   }
   .hero-content-sl {
     background: transparent;
-    max-width: 590px;
+    max-width: 100%;
   }
   .mobile-content {
     margin-top: 48px;
