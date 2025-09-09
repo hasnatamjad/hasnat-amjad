@@ -3,12 +3,15 @@
 <section
   class="hero-sl-{{ section.id }} color-{{ section.settings.color_scheme }}"
 >
+  {% comment %} MObile Content {% endcomment %}
   <div class="d-flex flex-column d-md-none mobile-content center">
     <h1 class="hero-heading">{{ section.settings.hero-heading }}</h1>
     <div class="hero-text px-3">{{ section.settings.hero-text-mobile}}</div>
   </div>
+  {% comment %} Background Image + Content {% endcomment %}
   <div
     class="hero-img-container hero-height-{{ section.settings.hero-sl-height }} hero-height-mobile d-flex align-items-end justify-content-center justify-content-md-start " >
+    {% comment %} Content Desktop {% endcomment %}
     <div class="hero-content-sl py-5">
       <div class="page-width py-0 pt-md-4 pb-md-5 hero-content-inner d-flex flex-column">
         <div class="d-none d-md-block">
@@ -19,6 +22,7 @@
       </div>
     </div>
   </div>
+  {% comment %} Hero Bottom {% endcomment %}
   <div class="hero-bottom">
     {% if section.settings.bottom-content != blank %}
     <p class="center d-none d-md-block">{{ section.settings.bottom-content }}</p>
@@ -56,6 +60,7 @@
   }
 }
 {% endstyle %}
+
 {% schema %}
 { "name": "Hero SL",
     "settings": [

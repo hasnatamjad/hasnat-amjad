@@ -38,6 +38,7 @@
 .hero-text p {
   font-size: calc(var(--hero-heading-size) * 0.28);
   line-height: 1.4;
+  margin: 40px 0;
 }
 .hero-bottom {
   padding: 3px 0;
