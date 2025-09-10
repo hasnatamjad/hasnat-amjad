@@ -25,19 +25,31 @@
                     {% comment %} img left part {% endcomment %}
                     <div class="col-5">
                         {% if product.featured_image %}
-                        <div class="">
+                        <div class="img-box">
                              <img src="{{ product.featured_image | image_url: width: 800 }}" width="auto" height="auto" alt="{{ product.title }}" class="adv-product-img" >
                         </div>
                       {% endif %}
                     </div>
                     {% comment %} content-right part {% endcomment %}
-                     <div class="col-7">
-                        <h3>{{ product.title }}</h3>
+                     <div class="col-7 details-box d-flex flex-column align-items-start  ">
+                        <h3 class="m-0 mt-2">{{ product.title }}</h3>
                         <p>{{ product.price | money_with_currency }}</p>
-                        <div>
+                        <div class="modal-description">
                             {{ product.description | strip_html }}
                         </div>
                      </div>
+                </div>
+                {% comment %} bottom part {% endcomment %}
+                <div class="row modal-bottom">
+                    <form method="post" action="{{ routes.cart_add_url }} " class="adv-modal-form" data-product-id="{{ product.id }}">
+                        <input type="hidden" name="id" value="">
+                        {%- for option in product.options_with_values -%}
+                            <div class="mb-3">
+                                <label>{{ option.name }}</label>
+                            </div>
+                        {%- endfor -%}
+
+                    </form>
                 </div>
              </template>
             {% endif %}
