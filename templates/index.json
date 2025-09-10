@@ -48,8 +48,8 @@
           "type": "product_block",
           "settings": {
             "product-sl": "blue-silk-tuxedo",
-            "hotspot-top": 40,
-            "hotspot-left": 40
+            "hotspot-top": 25,
+            "hotspot-left": 58
           }
         },
         "product_block_gNPcpL": {
