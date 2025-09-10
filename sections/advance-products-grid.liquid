@@ -10,7 +10,7 @@
                 <div class="adv-product-card">
                     {% if product.featured_image %}
                      <img src="{{ product.featured_image | image_url: width: 800 }}" width="auto" height="auto" alt="{{ product.title }}" class="adv-product-img" >
-                     <button>
+                     <button class="hotsop-btn">
                         <img src="{{ section.settings.hotspot-icon | image_url: width: 100 }}" height="auto" width="auto" >
                      </button>
                     {% endif %}
@@ -21,7 +21,15 @@
     </div>
  </div>
 </section>
+{% style %}
 
+  #adv-grid-{{ section.id }} {
+    {% for block in section.blocks %}
+    --hotspot-top: {{ block.settings.hotspot-top }}%;
+    --hotspot-left: {{ block.settings.hotspot-left }}%;
+    {% endfor %}
+  }
+{% endstyle %}
 <script src="{{ 'adv-product-grid.js' | asset_url }}" defer ></script>
 
 {% schema %}
@@ -44,6 +52,29 @@
                         "id": "product-sl",
                         "label": "Attach Product ",
                         "info": "Attach Product to show info"
+                    },
+                    {
+                        "type": "header",
+                        "content": "Hotspot Positions",
+                        "info": "Adjust positions to point at product"
+                    },
+                    {
+                        "type": "range",
+                        "id": "hotspot-top",
+                        "min": 5,
+                        "max": 100,
+                        "step": 1,
+                        "label": "From Top ",
+                        "default": 40
+                    },
+                    {
+                        "type": "range",
+                        "id": "hotspot-left",
+                        "min": 5,
+                        "max": 100,
+                        "step": 1,
+                        "label": "From Left ",
+                        "default": 40
                     },
 
                 ]
