@@ -56,8 +56,8 @@
           "type": "product_block",
           "settings": {
             "product-sl": "chequered-red-shirt",
-            "hotspot-top": 40,
-            "hotspot-left": 40
+            "hotspot-top": 52,
+            "hotspot-left": 75
           }
         }
       },
