@@ -9,7 +9,7 @@
             <div class="col-6 col-md-4 " {{ block.shopify_attributes }} >
                 <div class="adv-product-card">
                     {% if product.featured_image %}
-                     <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}" class="adv-product-img" >
+                     <img src="{{ product.featured_image | img_url: master }}" alt="{{ product.title }}" class="adv-product-img" >
                     {% endif %}
                 </div>
             </div>
