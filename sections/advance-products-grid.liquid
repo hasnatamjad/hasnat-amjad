@@ -20,11 +20,16 @@
             {% endif %}
         {% endfor %}
     </div>
+    {% comment %} overlay {% endcomment %}
+
+    <div class="popup-overlay-sl"></div>
+
     {% comment %} pop up modal {% endcomment %}
-    <div class="popup-modal p-4">
+
+    <div class="popup-modal-sl p-4">
         <div class="d-flex justify-content-end">
             <button class="btn-sl close-btn">
-            <img src{{ section.settings.close-icon | image_url: width: 100  }} width="auto" height="auto">
+            <img src="{{ 'close-icon-sl.svg' | asset_url }}" width="auto" height="auto">
             </button>
 
         </div>

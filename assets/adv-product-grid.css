@@ -12,11 +12,32 @@
 .btn-sl {
   border: none;
   background: transparent;
+  cursor: pointer;
+  pointer-events: all;
 }
 .hotspot-btn {
   z-index: 2;
   position: absolute;
   top: var(--hotspot-top);
   left: var(--hotspot-left);
-  cursor: pointer;
+}
+
+.popup-overlay-sl {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.3); /* very light black */
+  z-index: 999;
+}
+
+.popup-modal-sl {
+  display: none;
+  width: 350px;
+  background: #fff;
+  position: fixed;
+  top: 30%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
 }
