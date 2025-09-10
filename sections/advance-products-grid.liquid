@@ -44,25 +44,38 @@
                     <form method="post" action="{{ routes.cart_add_url }} " class="adv-modal-form" data-product-id="{{ product.id }}">
                         <input type="hidden" name="id" value="">
                         {%- for option in product.options_with_values -%}
-                            < class="mb-3">
+                            <div class="mb-3 d-flex flex-column">
                                 <label>{{ option.name }}</label>
                                 {% assign option_name = option.name %}
                             {% assign option_name_down = option.name | downcase %}
-                             
+                            
                             {%- if option_name_down contains 'color' or option_name_down contains 'colour' -%}
-                               <div class="d-flex">
+                               <div class="d-flex color-pills-box">
                                     {% for value in option.values %}
-                                        <span>{{ value }}</span>
+                                        <div class="d-flex pill-swatch-box">
+                                        <span  class="pill-swatch" style="background: {{ value | escape }}"></span>
+                                        <button class="adv-grid-pill d-flex justify-content-start align-items-center"
+                                            type="button" 
+                                        data-option="{{ option_name }}"
+                                        data-value="{{ value }}"
+                                        >
+                                        <span class="pill-label">{{ value }}</span>
+                                        </button>
+                                        </div>
+                                        
                                     {% endfor %}
                                 </div>
                                 {% else %}
-                                    <div>
-                                       {% for value in option.values %}
-                                        <span>{{ value }}</span>
-                                    {% endfor %} 
-                                    </div>
+                                    <select id="{{ option_name}}-{{ product.id }}" class="form-select py-3 px-3" data-option="{{ option_name }}">
+                                        <option value="" disabled selected >Choose {{ option.name }}</option>
+                                        {% for value in option.values %}
+                                            <option value="{{ value }}">
+                                                {{ value }}
+                                            </option>
+                                        {% endfor %}
+                                    </select>
                             {%- endif -%}
-                            
+                           
                             </div>
                             
                         {%- endfor -%}

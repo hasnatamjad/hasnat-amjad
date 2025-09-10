@@ -36,7 +36,7 @@
   width: 340px;
   background: #fff;
   position: fixed;
-  top: 30%;
+  top: 45%;
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 1000;
@@ -54,4 +54,28 @@
 }
 .details-box {
   gap: 12px;
+}
+.color-pills-box {
+  width: 100%;
+  border: 1px solid #000;
+}
+.pill-swatch-box {
+  width: 100%;
+
+  pointer-events: auto;
+}
+.adv-grid-pill {
+  background: #fff;
+  border: none;
+  height: 100%;
+  padding: 10px 12px;
+  flex: 1;
+  font-size: 15px;
+  cursor: pointer;
+}
+.pill-swatch {
+  width: 8px;
+  display: block;
+  border-left: 1px solid #000;
+  border-right: 1px solid #000;
 }
