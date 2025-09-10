@@ -1,0 +1,10 @@
+.adv-product-card {
+  positon: relative;
+  aspect-ratio: 1 /1.2;
+}
+
+.adv-product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

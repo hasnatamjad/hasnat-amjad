@@ -4,10 +4,14 @@
  <div class="page-width">
     <div class="row">
         {% for block in section.blocks %}
-            {%- assign product = block.settings.product-sl -%}
+            {%- assign product = block.settings.product -%}
             {% if product %}
             <div class="col-6 col-md-4 " {{ block.shopify_attributes }} >
-                <h2>{{ product.title }}</h2>
+                <div class="adv-product-card">
+                    {% if product.featured_image %}
+                     <img src="{{ product.featured_image | image_url: width: 600 }}" alt="{{ product.title }}" class="adv-product-img" >
+                    {% endif %}
+                </div>
             </div>
             {% endif %}
         {% endfor %}
@@ -30,7 +34,7 @@
                 "settings": [
                     {
                         "type": "product",
-                        "id": "product-sl",
+                        "id": "product",
                         "label": "Attach Product ",
                         "info": "Attach Product to show info"
                     },
