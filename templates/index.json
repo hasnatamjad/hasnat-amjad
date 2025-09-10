@@ -32,9 +32,15 @@
         "bottom-content": "SUSTAINABLE, ETHICALLY MADE CLOTHES IN SIZES XXS TO 6XL",
         "bottom-content-mobile": "SUSTAINABLE, ETHICALLY MADE ACTIVEWEAR"
       }
+    },
+    "advance_products_grid_RbihAi": {
+      "type": "advance-products-grid",
+      "name": "Advance Product Grid",
+      "settings": {}
     }
   },
   "order": [
-    "hero_sl_LpEcPF"
+    "hero_sl_LpEcPF",
+    "advance_products_grid_RbihAi"
   ]
 }
