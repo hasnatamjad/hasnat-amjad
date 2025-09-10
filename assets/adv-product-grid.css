@@ -9,9 +9,11 @@
   object-fit: cover;
 }
 
-.hotspot-btn {
+.btn-sl {
   border: none;
   background: transparent;
+}
+.hotspot-btn {
   z-index: 2;
   position: absolute;
   top: var(--hotspot-top);
