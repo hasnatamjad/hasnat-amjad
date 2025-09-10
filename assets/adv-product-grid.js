@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", function () {
   function closeModal() {
     modal.style.display = "none";
     overlay.style.display = "none";
-    document.body.style.overflow = ""; // restore scrolling
+    document.body.style.overflow = "";
   }
 
   closeBtn.addEventListener("click", closeModal);
