@@ -44,9 +44,27 @@
                     <form method="post" action="{{ routes.cart_add_url }} " class="adv-modal-form" data-product-id="{{ product.id }}">
                         <input type="hidden" name="id" value="">
                         {%- for option in product.options_with_values -%}
-                            <div class="mb-3">
+                            < class="mb-3">
                                 <label>{{ option.name }}</label>
+                                {% assign option_name = option.name %}
+                            {% assign option_name_down = option.name | downcase %}
+                             
+                            {%- if option_name_down contains 'color' or option_name_down contains 'colour' -%}
+                               <div class="d-flex">
+                                    {% for value in option.values %}
+                                        <span>{{ value }}</span>
+                                    {% endfor %}
+                                </div>
+                                {% else %}
+                                    <div>
+                                       {% for value in option.values %}
+                                        <span>{{ value }}</span>
+                                    {% endfor %} 
+                                    </div>
+                            {%- endif -%}
+                            
                             </div>
+                            
                         {%- endfor -%}
 
                     </form>
