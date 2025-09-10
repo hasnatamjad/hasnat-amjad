@@ -39,19 +39,25 @@
         "product_block_jAF4iz": {
           "type": "product_block",
           "settings": {
-            "product-sl": "black-leather-bag"
+            "product-sl": "black-leather-bag",
+            "hotspot-top": 22,
+            "hotspot-left": 65
           }
         },
         "product_block_xFjfkT": {
           "type": "product_block",
           "settings": {
-            "product-sl": "blue-silk-tuxedo"
+            "product-sl": "blue-silk-tuxedo",
+            "hotspot-top": 40,
+            "hotspot-left": 40
           }
         },
         "product_block_gNPcpL": {
           "type": "product_block",
           "settings": {
-            "product-sl": "chequered-red-shirt"
+            "product-sl": "chequered-red-shirt",
+            "hotspot-top": 40,
+            "hotspot-left": 40
           }
         }
       },
