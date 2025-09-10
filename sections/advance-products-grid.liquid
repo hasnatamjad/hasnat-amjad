@@ -1,9 +1,43 @@
+{{ 'adv-product-grid.css' | asset_url | stylesheet_tag }}
+
+<section id="adv-grid-{{ section.id }}" class="advance-product-grid">
+ <div class="page-width">
+    <div class="row">
+        {% for block in section.blocks %}
+            {%- assign product = block.settings.product-sl -%}
+            {% if product %}
+            <div class="col-6 col-md-4 " {{ block.shopify_attributes }} >
+                <h2>{{ product.title }}</h2>
+            </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+ </div>
+</section>
+
+<script src="{{ 'adv-product-grid.js' | asset_url }}" defer ></script>
+
 {% schema %}
     {
         "name": "Advance Product Grid",
         "settings": [
         
         ],
+        "blocks": [
+            {
+                "type": "product_block",
+                "name": "Product",
+                "settings": [
+                    {
+                        "type": "product",
+                        "id": "product-sl",
+                        "label": "Attach Product ",
+                        "info": "Attach Product to show info"
+                    },
+                ]
+            },
+        ],
+        
         "presets": [
             {
             "name": "Advance Product Grid"
