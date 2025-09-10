@@ -22,9 +22,9 @@
  </div>
 </section>
 {% style %}
-
-  #adv-grid-{{ section.id }} {
-    {% for block in section.blocks %}
+{% for block in section.blocks %}
+  #adv-grid-{{ section.id }} [{{ block.shopify_attributes }}] {
+    
     --hotspot-top: {{ block.settings.hotspot-top }}%;
     --hotspot-left: {{ block.settings.hotspot-left }}%;
     {% endfor %}
