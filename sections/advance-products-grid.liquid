@@ -10,7 +10,7 @@
                 <div class="adv-product-card">
                     {% if product.featured_image %}
                      <img src="{{ product.featured_image | image_url: width: 800 }}" width="auto" height="auto" alt="{{ product.title }}" class="adv-product-img" >
-                     <button class="hotspot-btn">
+                     <button data-target="modal-{{ block.id }}" class="hotspot-btn">
                         <img src="{{ section.settings.hotspot-icon | image_url: width: 100 }}" height="auto" width="auto" >
                      </button>
                     {% endif %}
@@ -23,11 +23,10 @@
 </section>
 {% style %}
 {% for block in section.blocks %}
- #adv-grid-{{ section.id }} .card-block-{{ block.id }} .hotspot-btn {
-      top: {{ block.settings.hotspot-top }}%;
-      left: {{ block.settings.hotspot-left }}%;
-    
-  }
+ .card-block-{{ block.id }} {
+   --hotspot-top: {{ block.settings.hotspot-top }}%;
+   --hotspot-left: {{ block.settings.hotspot-left }}%;
+ }
   {% endfor %}
 {% endstyle %}
 
