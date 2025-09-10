@@ -35,6 +35,31 @@
     },
     "advance_products_grid_RbihAi": {
       "type": "advance-products-grid",
+      "blocks": {
+        "product_block_jAF4iz": {
+          "type": "product_block",
+          "settings": {
+            "product-sl": "black-leather-bag"
+          }
+        },
+        "product_block_xFjfkT": {
+          "type": "product_block",
+          "settings": {
+            "product-sl": "blue-silk-tuxedo"
+          }
+        },
+        "product_block_gNPcpL": {
+          "type": "product_block",
+          "settings": {
+            "product-sl": "chequered-red-shirt"
+          }
+        }
+      },
+      "block_order": [
+        "product_block_jAF4iz",
+        "product_block_xFjfkT",
+        "product_block_gNPcpL"
+      ],
       "name": "Advance Product Grid",
       "settings": {}
     }
