@@ -1,10 +1,11 @@
 {{ 'adv-product-grid.css' | asset_url | stylesheet_tag }}
 
 
-<section id="adv-grid-{{ section.id }}" class="advance-product-grid">
+<section id="adv-grid-{{ section.id }}" class="advance-product-grid section-{{ section.id }}-padding">
  <div class="page-width">
     {% comment %} main product grid {% endcomment %}
-    <div class="row g-5 px-4">
+     <h2>{{ section.settings.adv-grid-heading }}</h2>
+    <div class="row g-4 px-4">
         {% for block in section.blocks %}
             {%- assign product = block.settings.product-sl -%}
             {% if product %}
@@ -185,6 +186,17 @@
  </div>
 </section>
 {% style %}
+.section-{{ section.id }}-padding {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
+
+  @media screen and (min-width: 750px) {
+    .section-{{ section.id }}-padding {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
 {% for block in section.blocks %}
  .card-block-{{ block.id }} {
    --hotspot-top: {{ block.settings.hotspot-top }}%;
@@ -200,6 +212,15 @@
     {
         "name": "Advance Product Grid",
         "settings": [
+          
+            {
+              "type": "text",
+              "id": "adv-grid-heading",
+              "label": "Heading",
+              "default": "Tisso vison in the wild",
+              
+            },
+          
         {
             "type": "image_picker",
             "id": "hotspot-icon",
@@ -211,6 +232,26 @@
           "label": "Gift Product",
           "info": "Only on buying any Black Medium Product"
         },
+        {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 40
+        },
+      {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 2,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 10
+      }
         ],
         "blocks": [
             {

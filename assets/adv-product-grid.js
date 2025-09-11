@@ -5,37 +5,23 @@ document.querySelectorAll(".advance-product-grid").forEach((root) => {
   const innerContent = modal.querySelector(".popup-content");
   const hotspots = root.querySelectorAll(".hotspot-btn");
 
-  // will hold gift variant info for this section (if any)
-  let giftVariant = null; // { id, color, size } or null
+  let giftVariant = null;
 
-  /* -----------------------------
-     Finds gift variant (runs when modal opens)
-     - looks for <script id="gift-sl"> inside the same section (root)
-     - finds a variant that has BOTH "black" AND "m" (case-insensitive)
-     - stores { id, color, size } in giftVariant
-  ------------------------------*/
+  // FINDING GIFT FROM THE GIFT PRODUCT
   function findingGift() {
     giftVariant = null;
     const giftScript = document.getElementById("gift-sl");
-    if (!giftScript) {
-      console.warn("🎁 Gift script not found");
-      return;
-    }
+    if (!giftScript) return;
 
     let giftData;
     try {
       giftData = JSON.parse(giftScript.textContent);
-    } catch (e) {
-      console.error("❌ Failed parsing gift JSON", e);
+    } catch {
       return;
     }
 
-    if (!giftData || !Array.isArray(giftData.variants)) {
-      console.warn("🎁 Gift JSON has no variants");
-      return;
-    }
+    if (!giftData || !Array.isArray(giftData.variants)) return;
 
-    // option indices
     const optNames = Array.isArray(giftData.options) ? giftData.options : [];
     const colorIndex = optNames.findIndex(
       (n) =>
@@ -47,7 +33,6 @@ document.querySelectorAll(".advance-product-grid").forEach((root) => {
       (n) => n && n.toLowerCase().includes("size")
     );
 
-    // find variant with black + m
     for (const v of giftData.variants) {
       const vals = [
         (v.option1 || "").toLowerCase(),
@@ -75,9 +60,6 @@ document.querySelectorAll(".advance-product-grid").forEach((root) => {
     return null;
   }
 
-  /* -----------------------------
-     Custom Select Initialization
-  ------------------------------*/
   function initCustomSelects(scope = document) {
     scope.querySelectorAll(".custom-select-wrapper").forEach((wrapper) => {
       const defaultOption = wrapper.querySelector(".default-option-text");
@@ -88,16 +70,12 @@ document.querySelectorAll(".advance-product-grid").forEach((root) => {
       const options = wrapper.querySelectorAll(".custom-option");
       const hiddenInput = wrapper.querySelector(".hidden-input-select");
 
-      // toggle dropdown
       trigger.addEventListener("click", (e) => {
         e.stopPropagation();
-        if (defaultOption) {
-          triggerText.textContent = defaultOption.textContent;
-        }
+        if (defaultOption) triggerText.textContent = defaultOption.textContent;
         wrapper.classList.toggle("open");
       });
 
-      // handle option selection
       options.forEach((option) => {
         option.addEventListener("click", () => {
           options.forEach((opt) => opt.classList.remove("selected"));
@@ -115,7 +93,7 @@ document.querySelectorAll(".advance-product-grid").forEach((root) => {
     });
   }
 
-  // close dropdowns if clicked outside
+  // CLOSING THE SELECT DROPDOWN WHEN CLICKED ANYWHERE
   document.addEventListener("click", (e) => {
     document
       .querySelectorAll(".custom-select-wrapper.open")
@@ -126,11 +104,7 @@ document.querySelectorAll(".advance-product-grid").forEach((root) => {
       });
   });
 
-  /* -----------------------------
-     Variant Handlers (per-modal scope)
-     - keeps selectedObj updated when a matching variant is found
-     - attaches submit handler that sends custom POST to cart/add.js
-  ------------------------------*/
+  // VARIANTS HANDLING
   function initVariantHandlers(scope) {
     const jsonEl = scope.querySelector(".adv-grid-json");
     if (!jsonEl) return;
@@ -138,15 +112,11 @@ document.querySelectorAll(".advance-product-grid").forEach((root) => {
     let productData;
     try {
       productData = JSON.parse(jsonEl.textContent);
-    } catch (e) {
-      console.error("❌ JSON parse error:", e);
+    } catch {
       return;
     }
 
-    if (!productData || !Array.isArray(productData.variants)) {
-      console.error("❌ No variants found in productData");
-      return;
-    }
+    if (!productData || !Array.isArray(productData.variants)) return;
 
     const form = scope.querySelector(".adv-modal-form");
     if (!form) return;
@@ -154,10 +124,8 @@ document.querySelectorAll(".advance-product-grid").forEach((root) => {
     const hiddenIdInput = form.querySelector("input[name='id']");
     if (!hiddenIdInput) return;
 
-    // selected object we maintain when a variant is matched
-    let selectedObj = null; // { id, color, size }
+    let selectedObj = null;
 
-    // helper: read option inputs into a map { OptionName: value }
     function readSelectedMap() {
       const map = {};
       const inputs = form.querySelectorAll(
@@ -171,7 +139,6 @@ document.querySelectorAll(".advance-product-grid").forEach((root) => {
       return map;
     }
 
-    // find option name keys for color/size in productData.options
     const optNames = Array.isArray(productData.options)
       ? productData.options
       : [];
@@ -186,16 +153,13 @@ document.querySelectorAll(".advance-product-grid").forEach((root) => {
       const selectedMap = readSelectedMap();
       console.log("👉 Selected map:", selectedMap);
 
-      // ensure all productData.options have a selection
       const missing = optNames.some((optName) => !selectedMap[optName]);
       if (missing) {
         hiddenIdInput.value = "";
         selectedObj = null;
-        console.warn("⚠️ Not all options selected yet");
         return;
       }
 
-      // find matching variant by comparing each option in the product's option order
       const matched = productData.variants.find((v) => {
         return optNames.every((optName, idx) => {
           const selectedValue = selectedMap[optName];
@@ -206,7 +170,6 @@ document.querySelectorAll(".advance-product-grid").forEach((root) => {
 
       if (matched) {
         hiddenIdInput.value = matched.id;
-        // build selectedObj with color & size (if keys found)
         selectedObj = {
           id: Number(matched.id),
           color: colorKey
@@ -233,21 +196,15 @@ document.querySelectorAll(".advance-product-grid").forEach((root) => {
       } else {
         hiddenIdInput.value = "";
         selectedObj = null;
-        console.warn("⚠️ No matching variant for selected map");
       }
     }
 
-    // listen for changes from hidden inputs
     form
       .querySelectorAll(".hidden-input-select, .hidden-input-pill")
       .forEach((input) => {
-        input.addEventListener("change", () => {
-          console.log(`🎯 Option [${input.name}] changed -> ${input.value}`);
-          updateVariant();
-        });
+        input.addEventListener("change", updateVariant);
       });
 
-    // pill click handling (pills should be inside .color-pills-box)
     scope.querySelectorAll(".adv-grid-pill").forEach((btn) => {
       btn.addEventListener("click", () => {
         const pillWrapper = btn.closest(".color-pills-box");
@@ -256,29 +213,18 @@ document.querySelectorAll(".advance-product-grid").forEach((root) => {
         const hiddenInput = pillWrapper.querySelector(".hidden-input-pill");
         if (!hiddenInput) return;
 
-        // Remove active class from siblings
         pillWrapper
           .querySelectorAll(".adv-grid-pill")
           .forEach((b) => b.classList.remove("active"));
         btn.classList.add("active");
 
-        // Set hidden input + trigger change -> updateVariant will run
         hiddenInput.value = btn.dataset.value || "";
-        console.log(
-          `🎨 Pill [${btn.dataset.option}] clicked -> ${btn.dataset.value}`
-        );
         hiddenInput.dispatchEvent(new Event("change", { bubbles: true }));
       });
     });
 
-    // Handle dropdown option clicks (we have initCustomSelects set the hidden-input-select change already)
-    // we don't need to rebind here.
-
-    // Intercept submit to perform custom add-to-cart with gift logic
     form.addEventListener("submit", async (e) => {
       e.preventDefault();
-
-      // ensure variant is up-to-date
       updateVariant();
 
       const mainVariantId = hiddenIdInput.value
@@ -289,10 +235,8 @@ document.querySelectorAll(".advance-product-grid").forEach((root) => {
         return;
       }
 
-      // build items array
       const items = [{ id: mainVariantId, quantity: 1 }];
 
-      // If we have a giftVariant found earlier and selectedObj exists, compare color+size (lowercased)
       if (
         giftVariant &&
         selectedObj &&
@@ -317,7 +261,6 @@ document.querySelectorAll(".advance-product-grid").forEach((root) => {
         else console.log("🎁 Gift not added (selectedObj incomplete)");
       }
 
-      // POST to cart/add.js with items array
       try {
         const res = await fetch("/cart/add.js", {
           method: "POST",
@@ -334,46 +277,37 @@ document.querySelectorAll(".advance-product-grid").forEach((root) => {
         }
 
         const result = await res.json();
-        console.log("✅ Added to cart result:", result);
-
-        // redirect to cart or show mini-cart — here we redirect
         window.location.href = "/cart";
       } catch (err) {
-        console.error("❌ Add to cart error:", err);
         alert("Failed to add to cart. See console for details.");
       }
     });
   }
 
-  /* -----------------------------
-     Modal Show/Close
-  ------------------------------*/
+  // SHOWING MODAL AND INITIATING CRITICAL FUNCTIONS
   function showModal(templateId) {
     const templateEL = document.getElementById(templateId);
     if (!templateEL) return;
 
-    innerContent.innerHTML = ""; // clear previous
-    innerContent.appendChild(templateEL.content.cloneNode(true)); // inject DOM
+    innerContent.innerHTML = "";
+    innerContent.appendChild(templateEL.content.cloneNode(true));
 
     modal.style.display = "block";
     overlay.style.display = "block";
     document.body.style.overflow = "hidden";
     findingGift();
-    console.log("🎁 Gift Array at modal open:");
-    // init UI + variant handling for the injected modal
     initCustomSelects(innerContent);
     initVariantHandlers(innerContent);
   }
 
+  // CLOSING MODAL
   function closeModal() {
     modal.style.display = "none";
     overlay.style.display = "none";
     document.body.style.overflow = "";
   }
 
-  /* -----------------------------
-     Events
-  ------------------------------*/
+  // EACH HOTSPOT OPENING MODAL
   hotspots.forEach((btn) => {
     btn.addEventListener("click", () => showModal(btn.dataset.target));
   });
@@ -381,6 +315,5 @@ document.querySelectorAll(".advance-product-grid").forEach((root) => {
   if (closeBtn) closeBtn.addEventListener("click", closeModal);
   if (overlay) overlay.addEventListener("click", closeModal);
 
-  // init selects on root load (not modal)
   initCustomSelects(root);
 });
