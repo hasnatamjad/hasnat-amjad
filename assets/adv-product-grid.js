@@ -12,18 +12,19 @@ document.querySelectorAll(".advance-product-grid").forEach((root) => {
     scope.querySelectorAll(".custom-select-wrapper").forEach((wrapper) => {
       const defaultOption = wrapper.querySelector(".default-option-text");
       const trigger = wrapper.querySelector(".custom-select-trigger");
-      if (!trigger) return; // safety
+      if (!trigger) return;
 
       const triggerText = trigger.querySelector(".trigger-label");
-      const optionBox = wrapper.querySelector(".custom-options");
       const options = wrapper.querySelectorAll(".custom-option");
-
-      const hiddenInput = wrapper.querySelector(".hidden-input-sl");
+      const hiddenInput = wrapper.querySelector(".hidden-input-select");
 
       // toggle dropdown
       trigger.addEventListener("click", (e) => {
         e.stopPropagation();
-        triggerText.textContent = defaultOption.textContent;
+        // reset to default text each time dropdown is opened
+        if (defaultOption) {
+          triggerText.textContent = defaultOption.textContent;
+        }
         wrapper.classList.toggle("open");
       });
 
@@ -55,15 +56,113 @@ document.querySelectorAll(".advance-product-grid").forEach((root) => {
   });
 
   /* -----------------------------
-     Modal Show/Close Functions
+     Variant Handlers
   ------------------------------*/
-  function showModal(html) {
+  function initVariantHandlers(scope) {
+    const jsonEl = scope.querySelector(".adv-grid-json");
+    if (!jsonEl) return;
+
+    let productData;
+    try {
+      productData = JSON.parse(jsonEl.textContent);
+    } catch (e) {
+      console.error("❌ JSON parse error:", e);
+      return;
+    }
+
+    if (!productData || !Array.isArray(productData.variants)) {
+      console.error("❌ No variants found in productData");
+      return;
+    }
+
+    const form = scope.querySelector(".adv-modal-form");
+    if (!form) return;
+
+    const hiddenIdInput = form.querySelector("input[name='id']");
+    if (!hiddenIdInput) return;
+
+    // collect all inputs (selects + pills)
+    const optionInputs = form.querySelectorAll(
+      ".hidden-input-select, .hidden-input-pill"
+    );
+
+    function updateVariant() {
+      const selectedOptions = Array.from(optionInputs).map((el) => el.value);
+      console.log("👉 Selected options so far:", selectedOptions);
+
+      if (selectedOptions.includes("") || selectedOptions.includes(null)) {
+        hiddenIdInput.value = "";
+        console.warn("⚠️ Not all options selected yet");
+        return;
+      }
+
+      const matched = productData.variants.find((variant) => {
+        const opts = [variant.option1, variant.option2, variant.option3].filter(
+          Boolean
+        );
+        return selectedOptions.every((val, i) => val === opts[i]);
+      });
+
+      if (matched) {
+        hiddenIdInput.value = matched.id;
+        console.log("✅ Variant matched:", matched);
+      } else {
+        hiddenIdInput.value = "";
+        console.warn("⚠️ No matching variant for:", selectedOptions);
+      }
+    }
+
+    // listen for changes from hidden inputs
+    optionInputs.forEach((input) => {
+      input.addEventListener("change", () => {
+        console.log(`🎯 Option [${input.name}] changed -> ${input.value}`);
+        updateVariant();
+      });
+    });
+
+    // pill click handling
+    scope.querySelectorAll(".adv-grid-pill").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const pillWrapper = btn.closest(".color-pills-box");
+        if (!pillWrapper) return;
+
+        const hiddenInput = pillWrapper.querySelector(".hidden-input-pill");
+        if (!hiddenInput) return;
+
+        // Remove active class from siblings
+        pillWrapper
+          .querySelectorAll(".adv-grid-pill")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+
+        // Set hidden input
+        hiddenInput.value = btn.dataset.value;
+
+        console.log(
+          `🎨 Pill [${btn.dataset.option}] clicked -> ${btn.dataset.value}`
+        );
+
+        hiddenInput.dispatchEvent(new Event("change", { bubbles: true }));
+      });
+    });
+  }
+
+  /* -----------------------------
+     Modal Show/Close
+  ------------------------------*/
+  function showModal(templateId) {
+    const templateEL = document.getElementById(templateId);
+    if (!templateEL) return;
+
+    innerContent.innerHTML = ""; // clear previous
+    innerContent.appendChild(templateEL.content.cloneNode(true)); // ✅ inject DOM
+
     modal.style.display = "block";
     overlay.style.display = "block";
     document.body.style.overflow = "hidden";
-    innerContent.innerHTML = html;
 
     initCustomSelects(innerContent);
+    initVariantHandlers(innerContent);
   }
 
   function closeModal() {
@@ -73,22 +172,15 @@ document.querySelectorAll(".advance-product-grid").forEach((root) => {
   }
 
   /* -----------------------------
-     Event Listeners
+     Events
   ------------------------------*/
   hotspots.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const templateEL = document.getElementById(btn.dataset.target);
-      if (templateEL) {
-        showModal(templateEL.innerHTML);
-      }
-    });
+    btn.addEventListener("click", () => showModal(btn.dataset.target));
   });
 
   if (closeBtn) closeBtn.addEventListener("click", closeModal);
   if (overlay) overlay.addEventListener("click", closeModal);
 
-  /* -----------------------------
-     Init selects on page load too
-  ------------------------------*/
+  // init on root load
   initCustomSelects(root);
 });
