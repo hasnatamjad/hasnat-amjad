@@ -80,28 +80,57 @@
         {% endfor %}
       </div>
       {% else %}
-     <div class="custom-select-wrapper" data-option="{{ option.name }}">
-  <div class="custom-select-trigger">
-    <span>Choose {{ option.name }}</span>
-    <div class="arrow">
-       <img src="{{ 'down-chevron.svg' | asset_url }}" width="auto" height="auto">
-    </div>
-  </div>
-  <div class="custom-options">
-    {% for value in option.values %}
-      <span class="custom-option" data-value="{{ value }}">{{ value }}</span>
-    {% endfor %}
-  </div>
-  <!-- hidden input to actually store value -->
-  <input type="hidden" class="hidden-input-sl" name="options[{{ option.name }}]" value="">
+        <div class="custom-select-wrapper" data-option="{{ option.name }}">
+          <div class="custom-select-trigger">
+            <span class="default-option-text" style="display:none;">Choose {{ option.name }}</span>
+            <span class="trigger-label">Choose {{ option.name }}</span>
+            <div class="arrow">
+              <img
+                src="{{ 'down-chevron.svg' | asset_url }}"
+            width="auto"
+            height="auto"
+          />
+        </div>
+      </div>
+          <div class="custom-options">
+            {% for value in option.values %}
+            <span class="custom-option" data-value="{{ value }}">{{ value }}</span>
+            {% endfor %}
+          </div>
+          <!-- hidden input to actually store value -->
+          <input
+            type="hidden"
+            class="hidden-input-sl"
+            name="options[{{ option.name }}]"
+            value=""
+          />
 </div>
-
-
       {%- endif -%}
     </div>
 
     {%- endfor -%}
+    <button type="submit" >Add To Cart</button>
   </form>
+  <script type="application/json" class="adv-grid-json" >
+    {
+      "id": {{ product.id  | json}},
+      title: {{ product.title | json }},
+      options: {{ product.options | json }},
+      variants: [
+        {% for variant in product.variants %}
+          {
+          "id": {{ variant.id | json}}},
+          avaialable: {{ variant.avaialable | json }},
+            "price": {{ variant.price | json }},
+            "option1": {{ variant.option1 | json }};
+            "option2": {{ variant.option2 | json }};
+            "option3": {{ variant.option3 | json }};
+          } {% unless forloop.last %},{% endunless %}
+        {% endfor %}
+      ]
+
+    }
+  </script>
 </div>
 
              </template>

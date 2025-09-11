@@ -10,17 +10,20 @@ document.querySelectorAll(".advance-product-grid").forEach((root) => {
   ------------------------------*/
   function initCustomSelects(scope = document) {
     scope.querySelectorAll(".custom-select-wrapper").forEach((wrapper) => {
+      const defaultOption = wrapper.querySelector(".default-option-text");
       const trigger = wrapper.querySelector(".custom-select-trigger");
       if (!trigger) return; // safety
 
-      const triggerText = trigger.querySelector("span");
+      const triggerText = trigger.querySelector(".trigger-label");
       const optionBox = wrapper.querySelector(".custom-options");
       const options = wrapper.querySelectorAll(".custom-option");
+
       const hiddenInput = wrapper.querySelector(".hidden-input-sl");
 
       // toggle dropdown
       trigger.addEventListener("click", (e) => {
         e.stopPropagation();
+        triggerText.textContent = defaultOption.textContent;
         wrapper.classList.toggle("open");
       });
 
@@ -60,7 +63,6 @@ document.querySelectorAll(".advance-product-grid").forEach((root) => {
     document.body.style.overflow = "hidden";
     innerContent.innerHTML = html;
 
-    // 🟢 re-init selects for modal content
     initCustomSelects(innerContent);
   }
 
