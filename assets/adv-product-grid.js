@@ -1,62 +1,46 @@
 document.querySelectorAll(".advance-product-grid").forEach((root) => {
-  document.addEventListener("click", function (e) {
-    console.clear();
+  const modal = root.querySelector(".popup-modal-sl");
+  const overlay = root.querySelector(".popup-overlay-sl");
+  const closeBtn = root.querySelector(".popup-modal-sl .close-btn");
+  const innerContent = modal.querySelector(".popup-content");
+  const hotspots = root.querySelectorAll(".hotspot-btn");
 
-    // Show the clicked element
-    console.log("Clicked element:", e.target);
-    console.log("Tag:", e.target.tagName);
-    console.log("Classes:", e.target.className);
-    console.log("ID:", e.target.id);
-    console.log(
-      "Outer HTML (truncated):",
-      e.target.outerHTML.slice(0, 200) + "..."
-    );
+  /* -----------------------------
+     Custom Select Initialization
+  ------------------------------*/
+  function initCustomSelects(scope = document) {
+    scope.querySelectorAll(".custom-select-wrapper").forEach((wrapper) => {
+      const trigger = wrapper.querySelector(".custom-select-trigger");
+      if (!trigger) return; // safety
 
-    // Show parent chain nicely
-    console.log("----- Path -----");
-    e.composedPath().forEach((el) => {
-      if (el.tagName) {
-        console.log(el.tagName, el.className || "");
-      }
-    });
+      const triggerText = trigger.querySelector("span");
+      const optionBox = wrapper.querySelector(".custom-options");
+      const options = wrapper.querySelectorAll(".custom-option");
+      const hiddenInput = wrapper.querySelector(".hidden-input-sl");
 
-    // Highlight element visually for 1s
-    e.target.style.outline = "2px solid red";
-    setTimeout(() => {
-      e.target.style.outline = "";
-    }, 1000);
-  });
+      // toggle dropdown
+      trigger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        wrapper.classList.toggle("open");
+      });
 
-  document.querySelectorAll(".custom-select-wrapper").forEach((wrapper) => {
-    const trigger = document.querySelector(".custom-select-trigger");
-    const triggerText = trigger.querySelector("span");
-    const arrow = trigger.querySelector(".arrow");
-    const optionBox = wrapper.querySelector(".custom-options");
-    const options = wrapper.querySelectorAll(".custom-option");
-    const hiddenInput = wrapper.querySelector(".hidden-input-sl");
+      // handle option selection
+      options.forEach((option) => {
+        option.addEventListener("click", () => {
+          options.forEach((opt) => opt.classList.remove("selected"));
+          option.classList.add("selected");
 
-    trigger.addEventListener("click", () => {
-      e.stopPropagation();
+          triggerText.textContent = option.textContent;
+          hiddenInput.value = option.dataset.value;
 
-      optionBox.classList.toggle("open");
-    });
-
-    // Handle option selection
-    options.forEach((option) => {
-      option.addEventListener("click", () => {
-        options.forEach((opt) => opt.classList.remove("selected"));
-        option.classList.add("selected");
-
-        triggerText.textContent = option.textContent;
-        hiddenInput.value = option.dataset.value;
-
-        wrapper.classList.remove("open");
-        hiddenInput.dispatchEvent(new Event("change")); // for Shopify variant JS
+          wrapper.classList.remove("open");
+          hiddenInput.dispatchEvent(new Event("change", { bubbles: true }));
+        });
       });
     });
-  });
+  }
 
-  // Close dropdown if clicked outside
+  // close dropdowns if clicked outside
   document.addEventListener("click", (e) => {
     document
       .querySelectorAll(".custom-select-wrapper.open")
@@ -66,30 +50,43 @@ document.querySelectorAll(".advance-product-grid").forEach((root) => {
         }
       });
   });
-  const hotspots = root.querySelectorAll(".hotspot-btn");
-  const modal = root.querySelector(".popup-modal-sl");
-  const overlay = root.querySelector(".popup-overlay-sl");
-  const closeBtn = root.querySelector(".popup-modal-sl .close-btn");
-  const innerContent = modal.querySelector(".popup-content ");
 
+  /* -----------------------------
+     Modal Show/Close Functions
+  ------------------------------*/
   function showModal(html) {
     modal.style.display = "block";
     overlay.style.display = "block";
     document.body.style.overflow = "hidden";
     innerContent.innerHTML = html;
+
+    // 🟢 re-init selects for modal content
+    initCustomSelects(innerContent);
   }
+
   function closeModal() {
     modal.style.display = "none";
     overlay.style.display = "none";
     document.body.style.overflow = "";
   }
 
+  /* -----------------------------
+     Event Listeners
+  ------------------------------*/
   hotspots.forEach((btn) => {
     btn.addEventListener("click", () => {
       const templateEL = document.getElementById(btn.dataset.target);
-      if (templateEL) showModal(templateEL.innerHTML);
+      if (templateEL) {
+        showModal(templateEL.innerHTML);
+      }
     });
   });
-  closeBtn.addEventListener("click", closeModal);
-  overlay.addEventListener("click", closeModal);
+
+  if (closeBtn) closeBtn.addEventListener("click", closeModal);
+  if (overlay) overlay.addEventListener("click", closeModal);
+
+  /* -----------------------------
+     Init selects on page load too
+  ------------------------------*/
+  initCustomSelects(root);
 });
