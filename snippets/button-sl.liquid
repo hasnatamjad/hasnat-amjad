@@ -42,7 +42,7 @@
   display: inline-flex;
   width: fit-content;
   gap: 16px;
-  padding: 1.6rem 3.2rem;
+  padding: 1.6rem 3.2rem !important;
   font-size: 20px;
   line-height: 1;
   align-items: center;
@@ -51,7 +51,7 @@
   text-transform: uppercase;
   cursor: pointer;
   position: relative;
-  background-color: {{ sst.bg_color }};
+  background-color: {{ sst.bg_color }} !important;
   text-decoration: none;
   overflow: hidden;
   z-index: 1;
@@ -69,7 +69,7 @@
   top: 0;
   width: 0;
   height: 100%;
-  background-color: {{ sst.bg_hover_color }};
+  background-color: {{ sst.bg_hover_color }} !important;
   transform: translateX(-100%);
   transition: all 0.7s;
   z-index: -1;
