@@ -162,9 +162,9 @@
     {% comment %} GIFT PRODUCT SETTINGS {% endcomment %}
      {% if section.settings.gift-product %}
       {% assign gift = section.settings.gift-product %}
-      <script type="application/json" id="git-sl" >
+      <script type="application/json" id="gift-sl" >
       {
-      |  "handle": {{ gift.handle | json }},
+        "handle": {{ gift.handle | json }},
           "title": {{ gift.title | json  }},
           "options": {{ gift.options | json }},
   "variants": [

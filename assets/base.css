@@ -3685,16 +3685,7 @@ details-disclosure > details {
 }
 
 /* Force all foreground text to use full opacity */
-:root {
-  --color-foreground: 18, 18, 18; /* still RGB values */
-}
 
-/* Remove rgba alpha from variables */
-*,
-*::before,
-*::after {
-  color: rgb(var(--color-foreground)) !important;
-}
 body p {
   margin: 0;
 }
