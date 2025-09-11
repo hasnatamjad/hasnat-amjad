@@ -1,23 +1,74 @@
-<section
-  class="top-bar-sl-{{ section.id }} color-{{ section.settings.color_scheme }} section-{{ section.id }}-padding"
->
-  <div class="page-width">
-    <button id="menu-toggle">
+{% comment %} upper row {% endcomment %}
+<div class="row">
+  {% comment %} img left part {% endcomment %}
+  <div class="col-5">
+    {% if product.featured_image %}
+    <div class="img-box">
       <img
-        id="menu-icon"
-        src="{{ 'hamburger-sl.svg' | asset_url }}"
-        alt="Menu"
+        src="{{ product.featured_image | image_url: width: 800 }}"
+        width="auto"
+        height="auto"
+        alt="{{ product.title }}"
+        class="adv-product-img"
       />
-    </button>
-
-    <div class="top-bar-flex">
-      <h2 class="brand-name">{{ section.settings.brand-name }}</h2>
-      <p class="bar-main-text d-none d-md-block">
-        {{ section.settings.bar-text }}
-      </p>
-      <div class="d-none d-md-block">
-        {% render 'button-sl' sst: section.settings, s_id: section.id %}
-      </div>
     </div>
+    {% endif %}
   </div>
-</section>
+  {% comment %} content-right part {% endcomment %}
+  <div class="col-7 details-box d-flex flex-column align-items-start">
+    <h3 class="m-0 mt-2">{{ product.title }}</h3>
+    <p>{{ product.price | money_with_currency }}</p>
+    <div class="modal-description">{{ product.description | strip_html }}</div>
+  </div>
+</div>
+{% comment %} bottom part {% endcomment %}
+<div class="row modal-bottom">
+  <form
+    method="post"
+    action="{{ routes.cart_add_url }} "
+    class="adv-modal-form"
+    data-product-id="{{ product.id }}"
+  >
+    <input type="hidden" name="id" value="" />
+    {%- for option in product.options_with_values -%}
+    <div class="mb-3 d-flex flex-column">
+      <label>{{ option.name }}</label>
+      {% assign option_name = option.name %} {% assign option_name_down =
+      option.name | downcase %} {%- if option_name_down contains 'color' or
+      option_name_down contains 'colour' -%}
+      <div class="d-flex color-pills-box">
+        {% for value in option.values %}
+        <div class="d-flex pill-swatch-box">
+          <span
+            class="pill-swatch"
+            style="background: {{ value | escape }}"
+          ></span>
+          <button
+            class="adv-grid-pill d-flex justify-content-start align-items-center"
+            type="button"
+            data-option="{{ option_name }}"
+            data-value="{{ value }}"
+          >
+            <span class="pill-label">{{ value }}</span>
+          </button>
+        </div>
+
+        {% endfor %}
+      </div>
+      {% else %}
+      <select
+        id="{{ option_name}}-{{ product.id }}"
+        class="form-select py-3 px-3"
+        data-option="{{ option_name }}"
+      >
+        <option value="" disabled selected>Choose {{ option.name }}</option>
+        {% for value in option.values %}
+        <option value="{{ value }}">{{ value }}</option>
+        {% endfor %}
+      </select>
+      {%- endif -%}
+    </div>
+
+    {%- endfor -%}
+  </form>
+</div>
