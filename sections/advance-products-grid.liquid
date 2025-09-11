@@ -147,7 +147,6 @@
     <div class="popup-overlay-sl"></div>
 
     {% comment %} pop up modal {% endcomment %}
-
     <div class="popup-modal-sl p-4">
         <div class="d-flex justify-content-end">
             <button class="btn-sl close-btn">
@@ -159,6 +158,30 @@
             product data here
         </div>
     </div>
+
+    {% comment %} GIFT PRODUCT SETTINGS {% endcomment %}
+     {% if section.settings.gift-product %}
+      {% assign gift = section.settings.gift-product %}
+      <script type="application/json" id="git-sl" >
+      {
+      |  "handle": {{ gift.handle | json }},
+          "title": {{ gift.title | json  }},
+          "options": {{ gift.options | json }},
+  "variants": [
+    {% for gvariant in gift.variants %}
+      {
+        "id": {{ gvariant.id | json }},
+        "available": {{ gvariant.available | json }},
+        "price": {{ gvariant.price | json }},
+        "option1": {{ gvariant.option1 | json }},
+        "option2": {{ gvariant.option2 | json }},
+        "option3": {{ gvariant.option3 | json }}
+      }{% unless forloop.last %},{% endunless %}
+    {% endfor %}
+  ]
+      }
+      </script>
+     {% endif %}
  </div>
 </section>
 {% style %}
