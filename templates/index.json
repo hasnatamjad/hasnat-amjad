@@ -68,7 +68,8 @@
       ],
       "name": "Advance Product Grid",
       "settings": {
-        "hotspot-icon": "shopify://shop_images/Group_1000008180_1.svg"
+        "hotspot-icon": "shopify://shop_images/Group_1000008180_1.svg",
+        "gift-product": "dark-winter-jacket"
       }
     }
   },
