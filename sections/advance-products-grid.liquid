@@ -80,16 +80,23 @@
         {% endfor %}
       </div>
       {% else %}
-      <select
-        id="{{ option_name}}-{{ product.id }}"
-        class="form-select py-3 px-3"
-        data-option="{{ option_name }}"
-      >
-        <option value="" disabled selected>Choose {{ option.name }}</option>
-        {% for value in option.values %}
-        <option value="{{ value }}">{{ value }}</option>
-        {% endfor %}
-      </select>
+     <div class="custom-select-wrapper" data-option="{{ option.name }}">
+  <div class="custom-select-trigger">
+    <span>Choose {{ option.name }}</span>
+    <div class="arrow">
+       <img src="{{ 'down-chevron.svg' | asset_url }}" width="auto" height="auto">
+    </div>
+  </div>
+  <div class="custom-options">
+    {% for value in option.values %}
+      <span class="custom-option" data-value="{{ value }}">{{ value }}</span>
+    {% endfor %}
+  </div>
+  <!-- hidden input to actually store value -->
+  <input type="hidden" class="hidden-input-sl" name="options[{{ option.name }}]" value="">
+</div>
+
+
       {%- endif -%}
     </div>
 
