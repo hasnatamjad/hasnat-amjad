@@ -32,7 +32,7 @@
     },
 {% endcomment %}
 
-<a class="btn btn-sl btn-sl-{{ s_id }}" href="#">
+<a class="btn btn-sl btn-sl-{{ s_id }}" {% if sst.btn_url_sl != blank %} href="{{ sst.btn_url_sl }}" {% endif %}>
   {{ sst.button_text }}
   {% render 'icon-arrow-right', s_id: s_id %}
 </a>
