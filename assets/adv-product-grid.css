@@ -141,7 +141,7 @@
 }
 
 .custom-select-wrapper.open .custom-options {
-  max-height: 117px;
+  max-height: 111px;
   border: 0.5px solid #000;
   border-top: none;
   overflow-y: auto;
