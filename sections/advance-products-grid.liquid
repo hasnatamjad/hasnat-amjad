@@ -55,7 +55,9 @@
     data-product-id="{{ product.id }}"
   >
     <input type="hidden" name="id" value="" />
+   <div class="d-flex flex-column-reverese">
     {%- for option in product.options_with_values -%}
+       
     <div class="mb-3 d-flex flex-column">
     <label>{{ option.name }}</label>
     {% assign option_name = option.name %}
@@ -113,8 +115,9 @@
       </div>
       {%- endif -%}
     </div>
-
+ 
     {%- endfor -%}
+     </div>
     <button type="submit" class="btn-sl-atc" >Add To Cart</button>
   </form>
   <script type="application/json" class="adv-grid-json">
