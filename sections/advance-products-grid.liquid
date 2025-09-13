@@ -4,8 +4,8 @@
 <section id="adv-grid-{{ section.id }}" class="advance-product-grid section-{{ section.id }}-padding">
  <div class="page-width">
     {% comment %} main product grid {% endcomment %}
-     <h2>{{ section.settings.adv-grid-heading }}</h2>
-    <div class="row g-4 px-4">
+     <h1>{{ section.settings.adv-grid-heading }}</h1>
+    <div class="row g-2 g-md-0 px-4">
         {% for block in section.blocks %}
             {%- assign product = block.settings.product-sl -%}
             {% if product %}
